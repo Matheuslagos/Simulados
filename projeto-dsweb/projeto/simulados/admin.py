@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Questao, Alternativa, Simulado
 
-# Register your models here.
+admin.site.register(Questao)
+admin.site.register(Alternativa)
+admin.site.register(Simulado)
