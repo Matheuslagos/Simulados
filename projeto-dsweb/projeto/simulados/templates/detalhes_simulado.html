@@ -4,13 +4,15 @@
 <html>
 
 <head>
-    <title>Detalhes do Simulado</title>
+    <title>Detalhes do Simulado: {{ simulado.nome }}</title>
 </head>
 
 <body>
+    {% include 'navbar.html' %}
     <h1>Detalhes do Simulado: {{ simulado.nome }}</h1>
-    <form method="post">
+    <form method="post" action="{% url 'processar_respostas' %}">
         {% csrf_token %}
+        <input type="hidden" name="simulado_id" value="{{ simulado.id }}">
         <ul>
             {% for questao in simulado.questoes.all %}
             <li>{{ questao.texto_questao }}</li>

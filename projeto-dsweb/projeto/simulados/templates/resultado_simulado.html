@@ -1,0 +1,53 @@
+<!-- resultado_simulado.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Resultado do Simulado</title>
+    <style>
+        /* Estilo para alternativa correta em verde */
+        .alternativa-correta {
+            color: green;
+        }
+
+        /* Estilo para alternativa selecionada errada em vermelho */
+        .alternativa-incorreta {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Resultado do Simulado: {{ simulado.nome }}</h1>
+    <p>Total de Questões: {{ total_questoes }}</p>
+    <p>Pontuação Obtida: {{ pontuacao }}</p>
+    <p>Porcentagem de Acertos: {{ porcentagem_acertos }}%</p>
+
+    <h2>Respostas do Usuário:</h2>
+    <ul>
+        {% for questao in simulado.questoes.all %}
+        <li>
+            {{ questao.texto_questao }}
+            <ul>
+                {% for alternativa in questao.alternativas.all %}
+                <li>
+                    {% if respostas_usuario.get|default:""|stringformat:"s" == alternativa.id|stringformat:"s" %}
+                    {% if alternativa == respostas_usuario.get|default:"" %}
+                    <span class="alternativa-correta">{{ alternativa.texto_alternativa }}</span>
+                    {% else %}
+                    <span class="alternativa-incorreta">{{ alternativa.texto_alternativa }}</span>
+                    {% endif %}
+                    {% else %}
+                    {{ alternativa.texto_alternativa }}
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
