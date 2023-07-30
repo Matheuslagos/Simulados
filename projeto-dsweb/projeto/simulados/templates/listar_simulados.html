@@ -18,15 +18,18 @@
         <input type="submit" value="Filtrar">
     </form>
 
+    {% for tema, simulados in simulados_agrupados.items %}
+    <h2>{{ tema }}</h2>
     <ul>
         {% for simulado in simulados %}
         <li>
             <a href="{% url 'detalhes_simulado' simulado.id %}">
-                {{ simulado.nome }} - Tema: {{ simulado.tema }}
+                {{ simulado.nome }}
             </a>
         </li>
         {% endfor %}
     </ul>
+    {% endfor %}
 </body>
 
 </html>

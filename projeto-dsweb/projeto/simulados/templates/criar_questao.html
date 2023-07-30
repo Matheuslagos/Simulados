@@ -1,0 +1,25 @@
+<!-- criar_questao.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Criar Questões</title>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <h1>Criar Questões</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ questao_form.as_p }}
+        <h3>Alternativas:</h3>
+        {% for form in alternativas_forms %}
+        {{ form.as_p }}
+        {% endfor %}
+        <input type="submit" value="Criar Questão">
+    </form>
+</body>
+
+</html>
