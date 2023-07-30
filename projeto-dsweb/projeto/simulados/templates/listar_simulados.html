@@ -1,0 +1,36 @@
+<!-- listar_simulados.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lista de Simulados</title>
+</head>
+
+<body>
+    <h1>Lista de Simulados</h1>
+
+    <!-- Formulário de filtragem por tema -->
+    <form method="get">
+        <label for="tema">Filtrar por tema:</label>
+        <select name="tema" id="tema">
+            <option value="">Todos</option>
+            {% for tema in temas %}
+            <option value="{{ tema }}">{{ tema }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <ul>
+        {% for simulado in simulados %}
+        <li>
+            <a href="{% url 'detalhes_simulado' simulado.id %}">
+                {{ simulado.nome }} - Tema: {{ simulado.tema }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

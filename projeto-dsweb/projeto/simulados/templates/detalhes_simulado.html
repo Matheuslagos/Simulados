@@ -1,0 +1,31 @@
+<!-- detalhes_simulado.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Detalhes do Simulado</title>
+</head>
+
+<body>
+    <h1>Detalhes do Simulado: {{ simulado.nome }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <ul>
+            {% for questao in simulado.questoes.all %}
+            <li>{{ questao.texto_questao }}</li>
+            <ul>
+                {% for alternativa in questao.alternativas.all %}
+                <li>
+                    <input type="radio" name="questao_{{ questao.id }}" value="{{ alternativa.id }}">
+                    {{ alternativa.texto_alternativa }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </ul>
+        <input type="submit" value="Enviar Respostas">
+    </form>
+</body>
+
+</html>

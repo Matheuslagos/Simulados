@@ -5,7 +5,7 @@ from django.db import models
 
 class Questao(models.Model):
     texto_questao = models.CharField(max_length=200)
-    
+    pontuacao = models.IntegerField(default=1)
 
     def __str__(self):
         return self.texto_questao
@@ -21,7 +21,7 @@ class Alternativa(models.Model):
 class Simulado(models.Model):
     nome = models.CharField(max_length=100)
     questoes = models.ManyToManyField(Questao)
-    
+    tema = models.CharField(max_length=50, default='Tema')
 
     def __str__(self):
         return self.nome
