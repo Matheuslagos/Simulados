@@ -1,7 +1,7 @@
 <!-- navbar.html -->
 
 <nav>
-    <a href="">Página Inicial</a>
+    <a href="{% url 'listar_simulados'%}">Página Inicial</a>
     {% if user.is_authenticated %}
     <a href="{% url 'criar_questao' %}">Criar Questões</a>
     <a href="{% url 'criar_simulado' %}">Criar Simulado</a>
